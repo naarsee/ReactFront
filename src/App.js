@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+//navegacion entre rutas
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import BooksList from './components/BooksList';
+import UsersList from './components/users/UsersList';
+import NavBar from './components/NavBar';
+import NewUser from './components/users/NewUser'
+import Home from './components/Home';
+import {Container} from '@mui/material'
+import ModifyUser from './components/users/ModifyUser';
 
-function App() {
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Container>
+      <NavBar/>
+        <Routes>
+          
+          <Route path='/' element={<Home />} />
+          <Route path='/books' element={<BooksList />} />
+          <Route path='/users' element={<UsersList/>}/>  
+          <Route path='/users/newUser' element={<NewUser/>} />   
+          <Route path='/user/:id/edit' element={<ModifyUser/>} />
+        </Routes>
+      </Container>
+    </BrowserRouter> 
   );
 }
-
-export default App;
